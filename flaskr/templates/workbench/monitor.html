@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Monitor{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<li><a href="{{ url_for('workbench.index') }}">Main Page</a></li>
+<li><a href="{{ url_for('workbench.indicator') }}">Indicator</a></li>
+<br>
+<hr>
+<h1>Check the Data</h1>
+<hr>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<label for="indiz">Choose Indiz:</label>
+<select name="indiz" id="indiz">
+  <script>
+    let indizdata = JSON.parse('{{ indizdata|tojson }}');
+    let ids = indizdata["ids"];
+    let names = indizdata["names"];
+    ids.forEach((id, index) => {
+      console.log("An id: ", id);
+      name = names[index];
+      console.log("A name: ", name);
+      $("#indiz").append('<option value="' + id + '" id="' + id + '">' + name + '</option>')
+      .on("click", ".price-rows", function() {
+        $.get('127.0.0.1:5000/price/' + id)
+      });
+    });
+  </script>
+</select>
+<section>
+  <div class="price-rows">
+
+  </div>
+</section>
+
+{% endblock %}

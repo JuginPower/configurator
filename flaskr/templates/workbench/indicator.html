@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Indicator{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('workbench.index') }}">Main Page</a>
+<a href="{{ url_for('workbench.monitor') }}">Monitor</a>
+{% endblock %}
