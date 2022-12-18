@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -21,8 +22,14 @@ def index():
 @login_required
 def monitor():
     if request.method == 'POST':
-        indiz_value = request.form['indiz']
-        return render_template('workbench/results.html', indizvalue=indiz_value)
+        indiz_id = request.form['indiz']
+        json_data = requests.get(urlstring+"/price/"+str(indiz_id)+"/200").json()
+        response_html = "<tr><th>Datum</th><th>Uhrzeit</th><th>Preis</th></tr>"
+        for date, price in zip(json_data["Datum"], json_data["Preis"]):
+            dateobj = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S %Z")
+            row = "<tr><td>" + dateobj.strftime("%Y-%m-%d") + "</td><td>"+ dateobj.strftime("%H:%M:%S") + "</td><td>" + str(price) + "</td></tr>"
+            response_html += row
+        return render_template('workbench/results.html', responsehtml=response_html)
     
     indizdata = {"ids": get_id(), "names": get_name()}
     return render_template('workbench/monitor.html', indizdata=indizdata)
