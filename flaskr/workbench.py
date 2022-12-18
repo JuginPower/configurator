@@ -9,7 +9,7 @@ import requests
 
 
 work = Blueprint('workbench', __name__)
-urlstring='http://127.0.0.1:5000'
+urlstring='http://127.0.0.2:5000'
 
 
 @work.route('/')
@@ -17,9 +17,13 @@ def index():
     return render_template('workbench/index.html')
 
 
-@work.route('/monitor')
+@work.route('/monitor', methods=('GET', 'POST'))
 @login_required
 def monitor():
+    if request.method == 'POST':
+        indiz_value = request.form['indiz']
+        return render_template('workbench/results.html', indizvalue=indiz_value)
+    
     indizdata = {"ids": get_id(), "names": get_name()}
     return render_template('workbench/monitor.html', indizdata=indizdata)
 

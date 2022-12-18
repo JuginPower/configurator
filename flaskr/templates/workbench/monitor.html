@@ -12,6 +12,7 @@
 <h1>Check the Data</h1>
 <hr>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<form action="{{ url_for('workbench.monitor') }}" method="post">
 <label for="indiz">Choose Indiz:</label>
 <select name="indiz" id="indiz">
   <script>
@@ -21,18 +22,12 @@
     ids.forEach((id, index) => {
       console.log("An id: ", id);
       name = names[index];
-      console.log("A name: ", name);
       $("#indiz").append('<option value="' + id + '" id="' + id + '">' + name + '</option>')
-      .on("click", ".price-rows", function() {
-        $.get('127.0.0.1:5000/price/' + id)
-      });
     });
   </script>
 </select>
-<section>
-  <div class="price-rows">
+<input type="submit" value="Submit">
+</form>
 
-  </div>
-</section>
 
 {% endblock %}
