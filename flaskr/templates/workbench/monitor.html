@@ -12,7 +12,7 @@
 <h1>Check the Data</h1>
 <hr>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<form action="{{ url_for('workbench.monitor') }}" method="post">
+<form>
 <label for="indiz">Choose Indiz:</label>
 <select name="indiz" id="indiz">
   <script>
@@ -22,12 +22,25 @@
     ids.forEach((id, index) => {
       console.log("An id: ", id);
       name = names[index];
-      $("#indiz").append('<option value="' + id + '" id="' + id + '">' + name + '</option>')
+      $("#indiz").append('<option value="' + id + '" id="chosen">' + name + '</option>')
     });
   </script>
 </select>
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" id="subm">
 </form>
 
+<script>
+  $("form").on("submit", function (e) {
+    var dataobject = $(this).serializeArray();
+    var valueid = dataobject[0].value;
+    $.post("{{ url_for('workbench.monitor') }}", { id: valueid, amount: 200 }, function (data, status) {
+      console.log("Here comes the status:", status);
+      $('table').html(data);
+    })
+    e.preventDefault();
+  })
+</script>
+
+<table></table>
 
 {% endblock %}
