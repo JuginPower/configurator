@@ -34,4 +34,4 @@ def create_app(test_config=None):
     app.register_blueprint(workbench.work)
     app.add_url_rule('/', endpoint='index')
 
-    return app
+    return app.run(host='0.0.0.0')
