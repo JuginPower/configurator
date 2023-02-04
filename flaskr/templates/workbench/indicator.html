@@ -7,4 +7,24 @@
 {% block content %}
 <a href="{{ url_for('workbench.index') }}">Main Page</a>
 <a href="{{ url_for('workbench.monitor') }}">Monitor</a>
+<br>
+<hr>
+<h1>Analyze the Data</h1>
+<hr>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<form>
+<label for="indiz">Choose Indiz:</label>
+<select name="indiz" id="indiz">
+  <script>
+    let indizdata = JSON.parse('{{ indizdata|tojson }}');
+    let ids = indizdata["ids"];
+    let names = indizdata["names"];
+    ids.forEach((id, index) => {
+      name = names[index];
+      $("#indiz").append('<option value="' + id + '" id="chosen">' + name + '</option>')
+    });
+  </script>
+</select>
+<input type="submit" value="Submit" id="subm">
+</form>
 {% endblock %}

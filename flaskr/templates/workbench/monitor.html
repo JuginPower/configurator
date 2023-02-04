@@ -20,7 +20,6 @@
     let ids = indizdata["ids"];
     let names = indizdata["names"];
     ids.forEach((id, index) => {
-      console.log("An id: ", id);
       name = names[index];
       $("#indiz").append('<option value="' + id + '" id="chosen">' + name + '</option>')
     });

@@ -1,3 +1,6 @@
+import base64
+from io import BytesIO
+from matplotlib.figure import Figure
 from datetime import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
@@ -37,9 +40,12 @@ def monitor():
 
 
 @work.route('/indicator')
-@login_required
 def indicator():
-    return render_template('workbench/indicator.html')
+    if request.method == 'POST':
+        id = request.form['id']
+
+    indizdata = {"ids": get_id(), "names": get_name()}
+    return render_template('workbench/monitor.html', indizdata=indizdata)
 
 
 def get_id(name=None):
