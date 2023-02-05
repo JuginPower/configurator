@@ -24,7 +24,10 @@
       $("#indiz").append('<option value="' + id + '" id="chosen">' + name + '</option>')
     });
   </script>
-</select>
+</select><br>
+  <button name="timeframe" id="daily" autofocus>Daily</button>
+  <button name="timeframe" id="hourly">Hourly</button>
+  <button name="timeframe" id="minutely">Minutely</button>
 <input type="submit" value="Submit" id="subm">
 </form>
 {% endblock %}

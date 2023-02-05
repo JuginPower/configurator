@@ -1,6 +1,3 @@
-import base64
-from io import BytesIO
-from matplotlib.figure import Figure
 from datetime import datetime
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
@@ -13,7 +10,7 @@ import requests
 
 
 work = Blueprint('workbench', __name__)
-urlstring='http://stock.eugenkraft.com'
+urlstring='http://127.0.0.2:5000'
 
 
 @work.route('/')
@@ -45,7 +42,7 @@ def indicator():
         id = request.form['id']
 
     indizdata = {"ids": get_id(), "names": get_name()}
-    return render_template('workbench/monitor.html', indizdata=indizdata)
+    return render_template('workbench/indicator.html', indizdata=indizdata)
 
 
 def get_id(name=None):
