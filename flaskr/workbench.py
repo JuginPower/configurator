@@ -10,7 +10,7 @@ import requests
 
 
 work = Blueprint('workbench', __name__)
-urlstring='http://127.0.0.2:5000'
+urlstring='http://stock.eugenkraft.com'
 
 
 @work.route('/')
