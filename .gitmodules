@@ -1,0 +1,3 @@
+[submodule "stockmodels"]
+	path = stockmodels
+	url = https://github.com/JuginPower/stockmodels.git
