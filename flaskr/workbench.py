@@ -6,7 +6,7 @@ from werkzeug.exceptions import abort
 
 from flaskr.auth import login_required
 from flaskr.db import get_db
-from model import Price, Indiz
+from stockmodels import Price, Indiz
 
 
 work = Blueprint('workbench', __name__)

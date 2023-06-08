@@ -1,4 +1,4 @@
-from model import Indiz, CrawlerFloat, Price
+from stockmodels import Indiz, CrawlerFloat, Price
 
 
 indiz_object = Indiz()

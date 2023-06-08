@@ -1,4 +1,4 @@
-from model import Datamanager
+from stockmodels import Datamanager
 from datetime import datetime
 
 
