@@ -10,7 +10,6 @@ from stockmodels import Price, Indiz
 
 
 work = Blueprint('workbench', __name__)
-urlstring='http://stock.eugenkraft.com'
 
 
 @work.route('/')
