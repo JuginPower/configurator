@@ -29,22 +29,19 @@ def monitor():
         prices = price_object.get_closes(amount)
         response_html = "<tr><th>Datum</th><th>Uhrzeit</th><th>Preis</th></tr>"
         for date, price in zip(dates, prices):
-            dateobj = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S %Z")
-            row = "<tr><td>" + dateobj.strftime("%Y-%m-%d") + "</td><td>"+ dateobj.strftime("%H:%M:%S") + "</td><td>" + str(price) + "</td></tr>"
+            # dateobj = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S %Z")
+            row = "<tr><td>" + date.strftime("%Y-%m-%d") + "</td><td>"+ date.strftime("%H:%M:%S") + "</td><td>" + str(price) + "</td></tr>"
             response_html += row
         return response_html
     
     indizData = get_indiz_data()
-    return render_template('workbench/monitor.html', indiz_data=indizData)
+    return render_template('workbench/monitor.html', indizdata=indizData)
 
 
 @work.route('/indicator')
 def indicator():
-    if request.method == 'POST':
-        id = request.form['id']
-
     indizData = get_indiz_data()
-    return render_template('workbench/indicator.html', indiz_data=indizData)
+    return render_template('workbench/indicator.html', indizdata=indizData)
 
 
 def get_indiz_data(id=None, name=None):
